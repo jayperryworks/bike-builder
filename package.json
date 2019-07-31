@@ -1,9 +1,19 @@
 {
-  "name": "TODO",
-  "description": "TODO",
+  "name": "bike-builder",
+  "description": "Simple app for building and comparing bike parts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jayperryworks/bike-builder.git"
+  },
+  "author": "Jay Perry Works",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jayperryworks/bike-builder/issues"
+  },
+  "homepage": "https://github.com/jayperryworks/bike-builder",
   "version": "0.0.1",
   "scripts": {
-    "dev": "sapper dev",
+    "dev": "sapper dev --hot=false",
     "build": "sapper build",
     "export": "sapper export",
     "start": "node __sapper__/build",
