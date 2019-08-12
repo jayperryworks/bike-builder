@@ -1,46 +1,45 @@
 <style>
-	h1, figure, p {
-		text-align: center;
-		margin: 0 auto;
-	}
-
-	h1 {
-		font-size: 2.8em;
-		text-transform: uppercase;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
-
-	figure {
-		margin: 0 0 1em 0;
-	}
-
-	img {
-		width: 100%;
-		max-width: 400px;
-		margin: 0 0 1em 0;
-	}
-
-	p {
-		margin: 1em auto;
-	}
-
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
-	}
+	
 </style>
 
+<script>
+	import { parts } from '../stores.js'
+	import Urlize from 'urlize'
+	import PartListing from '../components/PartListing.svelte'
+
+	let urlize = Urlize.urlize
+
+	function findSelectedOption(options) {
+		return options.find(option => option.selected == true)
+	}
+
+	function selectOption(option) {
+
+	}
+</script>
+
 <svelte:head>
-	<title>Sapper project template</title>
+	<title>Your build</title>
 </svelte:head>
 
-<h1>Great success!</h1>
+<header>
+	<h2>Your build:</h2>
+	<dl>
+		<div class="stat-group">
+			<dt>Total weight:</dt>
+			<dd>8.9kg</dd>
+		</div>
+		<div class="stat-group">
+			<dt>Total price:</dt>
+			<dd>$3000.00</dd>
+		</div>
+	</dl>
+</header>
 
-<figure>
-	<img alt='Borat' src='great-success.png'>
-	<figcaption>HIGH FIVE!</figcaption>
-</figure>
-
-<p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p>
+<ul>
+	{#each $parts as part}
+	<li>
+		<PartListing part={part} />
+	</li>
+	{/each}
+</ul>
