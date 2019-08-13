@@ -1,14 +1,21 @@
 <script>
-  import Urlize from 'urlize'
-
-  let urlize = Urlize.urlize
-  let selectedOption
+  import { parts } from '../stores.js'
 
   // Props
   export let part
 
-  function findSelectedOption(options) {
-    return options.find(option => option.selected == true)
+  let partIndex = $parts.findIndex(p => p.name == part.name)
+
+  let selectedOption = $parts[partIndex].selectedOption
+
+  function findSelectedOption() {
+    return part.options.find(option => option.id == selectedOption)
+  }
+
+  function setSelectedOption() {
+    if (selectedOption) {
+      console.log('hello')
+    }
   }
 </script>
 
@@ -17,14 +24,13 @@
   {#if (part.options.length > 0)}
     <select 
       bind:value={selectedOption} 
-      on:change="{() => answer = ''}" 
       name="part-options" 
       id="part-options"
     >
         {#each part.options as option}
           <option 
-            value="{option.id}"
-            selected="{option.selected}"
+            value="{option}"
+            selected="{option.id == selectedOption}"
           >
             {option.brand} {option.model}
           </option>
@@ -35,14 +41,15 @@
   {/if}
 </form>
 {#if (part.options.length > 0)}
+<p>Selected: {selectedOption}</p>
   <dl>
     <div>
       <dt>Weight:</dt>
-      <dd>{findSelectedOption(part.options).weight}g</dd>
+      <dd>{findSelectedOption().weight}g</dd>
     </div>
     <div>
       <dt>Price:</dt>
-      <dd>${findSelectedOption(findSelectedOption(part.options).buy).price}</dd>
+      <dd>${findSelectedOption(findSelectedOption().buy).price}</dd>
     </div>
   </dl>
   <button>Edit</button>

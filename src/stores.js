@@ -7,13 +7,13 @@ export const groupsets = writable([])
 export const parts = writable([
   {
     name:'Bottom bracket',
+    selectedOption: 'test2',
     options: [
       {
         id: 'test',
         brand: 'Test',
         model: 'Awesome 3001',
         weight: 1000,
-        selected: true,
         buy: [
           {
             storeName: 'Merlin',
@@ -36,7 +36,6 @@ export const parts = writable([
         brand: 'Test2',
         model: 'Awesome 3002',
         weight: 1050,
-        selected: false,
         buy: [
           {
             storeName: 'Merlin',
